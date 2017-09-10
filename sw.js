@@ -16,7 +16,7 @@ var filesToCache = [
 
        '/styles/inline.css',
 
-       '/images/icons/WebApp-128x128.png'
+       '/images/icons/WebApp-144x144.png'
 
 ]
 
