@@ -1,0 +1,141 @@
+<!DOCTYPE html>  
+<html>  
+<head>  
+  <style>  
+    .video-container {  
+      position: relative;  
+      padding-bottom: 56.25%;  
+      padding-top: 30px;  
+      height: 0;  
+      overflow: hidden;  
+    }  
+    .video-container iframe,  
+    .video-container object,  
+    .video-container embed {  
+      position: absolute;  
+      top: 0;  
+      left: 0;  
+      width: 100%;  
+      height: 100%;  
+    }  
+    #blackout1 {  
+      position: absolute;  
+      background-color: black;  
+      width: 9%;  
+      height: 5%;  
+      top: 75.5%;  
+      left: 41.5%;  
+      display: none;  
+    }
+	#blackout2 {  
+      position: absolute;  
+      background-color: black;  
+      width: 15%;  
+      height: 5%;  
+      top: 70.5%;  
+      left: 42%;  
+      display: none;  
+    }
+	#blackout3 {  
+      position: absolute;  
+      background-color: black;  
+      width: 10%;  
+      height: 5%;  
+      top: 76%;  
+      left: 41.5%;  
+      display: none;  
+    }
+  </style>  
+  <script src="https://www.youtube.com/iframe_api"></script>  
+</head>  
+<body>  
+  
+<div class="video-container">  
+  <div id="video"></div>  
+  <div id="blackout1" class="blackout"></div>
+  <div id="blackout2" class="blackout"></div>  
+  <div id="blackout3" class="blackout"></div>
+</div>  
+  
+<audio id="bleep" src="censor-beep-01.mp3" preload="auto"></audio>  
+  
+<script>  
+  // Load the YouTube Player API  
+  var player;  
+  
+  function onYouTubeIframeAPIReady() {  
+    player = new YT.Player('video', {  
+      height: '315',  
+      width: '560',  
+      videoId: 'UOMDIukgq2s',  
+      events: {  
+        'onReady': onPlayerReady  
+      }  
+    });  
+  }  
+  
+  // Play the video when the player is ready  
+  function onPlayerReady(event) {  
+    event.target.playVideo();  
+    applyCensorship();  
+  }  
+  
+  // Apply censorship to the video (bleep audio and cover part of the video)  
+  function applyCensorship() {  
+    var blackoutElement1 = document.getElementById('blackout1');
+	var blackoutElement2 = document.getElementById('blackout2');
+	var blackoutElement3 = document.getElementById('blackout3');	
+    var bleepAudio = document.getElementById('bleep');  
+  
+    var bleepStart1 = 10;  
+    var bleepEnd1 = 11;  
+    var bleepStart2 = 11.75;  
+    var bleepEnd2 = 12.75;  
+	var bleepStart3 = 20.5;  
+    var bleepEnd3 = 21.25;  
+  
+    var blackoutStart1 = 9;  
+    var blackoutEnd1 = 11.25;
+
+	var blackoutStart2 = 11.75;  
+    var blackoutEnd2 = 13;
+
+	var blackoutStart3 = 20.5;  
+    var blackoutEnd3 = 21.25;
+  
+    setInterval(function() {  
+      var currentTime = player.getCurrentTime();  
+        
+      // Play bleep sound  
+      if ((currentTime >= bleepStart1 && currentTime <= bleepEnd1) || (currentTime >= bleepStart2 && currentTime <= bleepEnd2)|| (currentTime >= bleepStart3 && currentTime <= bleepEnd3)) {  
+        player.mute();  
+        bleepAudio.currentTime = 0;  
+        bleepAudio.play();  
+      } else {  
+        player.unMute();  
+      }  
+        
+      // Display black box  
+      if (currentTime >= blackoutStart1 && currentTime <= blackoutEnd1) {  
+        blackoutElement1.style.display = 'block';  
+      } else {  
+        blackoutElement1.style.display = 'none';  
+      }
+	  // Display black box  
+      if (currentTime >= blackoutStart2 && currentTime <= blackoutEnd2) {  
+        blackoutElement2.style.display = 'block';  
+      } else {  
+        blackoutElement2.style.display = 'none';  
+      }
+	  // Display black box  
+      if (currentTime >= blackoutStart3 && currentTime <= blackoutEnd3) {  
+        blackoutElement3.style.display = 'block';  
+      } else {  
+        blackoutElement3.style.display = 'none';  
+      }
+    }, 100);  
+  }  
+</script>  
+<h1><a href="GPT4Chat.txt" target="_blank">Censorship provided by a collaboration between Jason and GPT4.</a></h1>
+</body>  
+</html>  
