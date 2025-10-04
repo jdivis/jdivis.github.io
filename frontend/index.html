@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; connect-src 'self' https://api.yourdomain.com; script-src 'self' https://challenges.cloudflare.com; style-src 'self'; img-src 'self' data:; font-src 'self'; frame-src https://challenges.cloudflare.com; base-uri 'self'; form-action 'self';"
+    />
+    <title>Jason Fit Checker</title>
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" href="../favicon.ico" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="branding">
+        <h1>Jason Fit Checker</h1>
+        <p class="tagline">Find out if Jason is the right hire in just a few taps.</p>
+      </div>
+      <nav class="mode-switch" aria-label="Viewing mode">
+        <span id="mode-label">Show me the</span>
+        <div role="tablist" aria-labelledby="mode-label">
+          <button role="tab" aria-selected="true" data-mode="90s">90s overview</button>
+          <button role="tab" aria-selected="false" data-mode="3m">3 minute dive</button>
+          <button role="tab" aria-selected="false" data-mode="7m">7 minute deep dive</button>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section class="usage" aria-live="polite">
+        <p id="usage-meter">Usage: --/20 today</p>
+        <button id="subscribe-button" type="button" class="secondary">Subscribe for updates</button>
+      </section>
+
+      <section class="fit-checker">
+        <h2>Describe your needs</h2>
+        <div class="chip-row" role="list" aria-label="Quick prompts">
+          <button role="listitem" type="button" class="chip" data-prompt="Need a product design leader">Product design leader</button>
+          <button role="listitem" type="button" class="chip" data-prompt="Scaling design systems for enterprise">Design systems</button>
+          <button role="listitem" type="button" class="chip" data-prompt="Launching a GTM campaign">GTM launch</button>
+          <button role="listitem" type="button" class="chip" data-prompt="Driving cross-functional alignment">Cross-functional alignment</button>
+        </div>
+        <form id="fit-form" novalidate>
+          <label for="fit-text" class="sr-only">Fit Checker prompt</label>
+          <textarea
+            id="fit-text"
+            name="prompt"
+            rows="5"
+            maxlength="1000"
+            placeholder="Tell us about the role, challenge, or team Jason would support..."
+            required
+          ></textarea>
+          <div id="turnstile-container" class="turnstile" data-sitekey="<!-- TURNSTILE_SITE_KEY -->"></div>
+          <div class="form-actions">
+            <button type="submit" class="primary">Check the fit</button>
+            <button type="button" id="clear-button" class="ghost">Clear</button>
+          </div>
+          <p id="form-feedback" class="feedback" role="status" aria-live="polite"></p>
+        </form>
+      </section>
+
+      <section class="results" aria-live="polite" aria-busy="false">
+        <h2>Results</h2>
+        <div id="results-container" class="result-grid" hidden>
+          <article class="card" data-section="summary">
+            <h3>Summary</h3>
+            <p class="card-body" id="summary-text">&nbsp;</p>
+          </article>
+          <article class="card" data-section="fitScore">
+            <h3>Fit Score</h3>
+            <p class="card-body" id="score-text">--</p>
+          </article>
+          <article class="card" data-section="keyReasons">
+            <h3>
+              Highlights
+              <button type="button" class="accordion-toggle" aria-expanded="false" aria-controls="reasons-list">Expand</button>
+            </h3>
+            <ul id="reasons-list" class="card-body collapsible" hidden></ul>
+          </article>
+          <article class="card" data-section="suggestedFollowUps">
+            <h3>Suggested follow-ups</h3>
+            <ul id="followups-list" class="card-body"></ul>
+          </article>
+        </div>
+        <div id="empty-state" class="empty-state">
+          <p>Run the Fit Checker to see insights tailored to your needs.</p>
+        </div>
+        <div id="quota-state" class="quota-state" hidden>
+          <p>You&rsquo;ve hit today&rsquo;s limit. Come back tomorrow or stay in the loop.</p>
+          <button type="button" id="quota-subscribe" class="primary">Contact &amp; subscribe</button>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; <span id="year"></span> Jason Divis. All rights reserved.</p>
+    </footer>
+
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+    <script src="app.js" type="module"></script>
+  </body>
+</html>

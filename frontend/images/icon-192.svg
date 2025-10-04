@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192" role="img" aria-labelledby="title desc">
+  <title id="title">Jason Fit Checker placeholder icon</title>
+  <desc id="desc">Stylized initials JF on a gradient background. Replace with branded artwork.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2c5cff" />
+      <stop offset="100%" stop-color="#08c6ff" />
+    </linearGradient>
+  </defs>
+  <rect width="192" height="192" rx="24" fill="url(#bg)" />
+  <text x="50%" y="55%" text-anchor="middle" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="82" font-weight="700" fill="#ffffff" letter-spacing="-4">
+    JF
+  </text>
+  <text x="50%" y="78%" text-anchor="middle" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="22" fill="#e2f3ff" letter-spacing="6">
+    DEMO
+  </text>
+</svg>

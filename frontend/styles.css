@@ -1,0 +1,342 @@
+:root {
+  color-scheme: light dark;
+  --font-sans: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --font-serif: 'Newsreader', 'Georgia', serif;
+  --color-bg: #f6f6f9;
+  --color-bg-dark: #101322;
+  --color-surface: #ffffff;
+  --color-surface-dark: #1b1f32;
+  --color-primary: #2c5cff;
+  --color-primary-dark: #8ca8ff;
+  --color-accent: #ff9c27;
+  --color-text: #141414;
+  --color-text-muted: #4c4f65;
+  --color-text-dark: #f5f6ff;
+  --color-border: #d7d9ec;
+  --color-border-dark: #2a2f47;
+  --max-width: 52.5rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    background-color: var(--color-bg-dark);
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  background: var(--color-bg);
+  color: var(--color-text);
+  min-height: 100%;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background: var(--color-bg-dark);
+    color: var(--color-text-dark);
+  }
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.5rem;
+}
+
+main,
+header,
+footer {
+  width: min(100%, var(--max-width));
+}
+
+.site-header {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.branding h1 {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  margin: 0;
+}
+
+.branding .tagline {
+  margin: 0.5rem 0 0;
+  color: var(--color-text-muted);
+}
+
+.mode-switch {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.mode-switch button[role='tab'] {
+  border: 1px solid var(--color-border);
+  background: transparent;
+  color: inherit;
+  padding: 0.5rem 0.85rem;
+  border-radius: 999px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, border 0.2s ease;
+}
+
+.mode-switch button[role='tab'][aria-selected='true'] {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: #fff;
+}
+
+.mode-switch button[role='tab']:focus-visible,
+.chip:focus-visible,
+.primary:focus-visible,
+.secondary:focus-visible,
+.ghost:focus-visible,
+.accordion-toggle:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.usage {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  background: color-mix(in srgb, var(--color-primary) 6%, transparent);
+  border: 1px solid var(--color-border);
+  border-radius: 1rem;
+  padding: 1rem 1.5rem;
+  margin-bottom: 2rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  .usage {
+    background: color-mix(in srgb, var(--color-primary-dark) 16%, transparent);
+    border-color: var(--color-border-dark);
+  }
+}
+
+.fit-checker,
+.results {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 1.25rem;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 12px 32px rgba(17, 24, 39, 0.08);
+}
+
+@media (prefers-color-scheme: dark) {
+  .fit-checker,
+  .results {
+    background: var(--color-surface-dark);
+    border-color: var(--color-border-dark);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
+  }
+}
+
+.fit-checker h2,
+.results h2 {
+  margin-top: 0;
+  font-size: 1.5rem;
+}
+
+.chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.chip {
+  border: 1px solid var(--color-border);
+  background: transparent;
+  color: inherit;
+  border-radius: 999px;
+  padding: 0.35rem 0.85rem;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.chip:hover,
+.chip:focus-visible {
+  background: color-mix(in srgb, var(--color-primary) 10%, transparent);
+}
+
+#fit-text {
+  width: 100%;
+  font-size: 1rem;
+  line-height: 1.5;
+  padding: 0.85rem;
+  border-radius: 0.75rem;
+  border: 1px solid var(--color-border);
+  resize: vertical;
+  min-height: 8rem;
+  background: color-mix(in srgb, #fff 90%, var(--color-surface));
+  color: inherit;
+}
+
+#fit-text:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-primary) 30%, transparent);
+}
+
+.turnstile {
+  margin: 1rem 0;
+}
+
+.form-actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+button.primary,
+button.secondary,
+button.ghost {
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 999px;
+  padding: 0.65rem 1.4rem;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+button.primary {
+  background: var(--color-primary);
+  color: #fff;
+  box-shadow: 0 8px 24px rgba(44, 92, 255, 0.35);
+}
+
+button.primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 28px rgba(44, 92, 255, 0.45);
+}
+
+button.secondary {
+  background: transparent;
+  border: 1px solid var(--color-border);
+}
+
+button.secondary:hover {
+  background: color-mix(in srgb, var(--color-primary) 10%, transparent);
+}
+
+button.ghost {
+  background: transparent;
+  border: 1px dashed var(--color-border);
+}
+
+button.ghost:hover {
+  background: color-mix(in srgb, var(--color-primary) 6%, transparent);
+}
+
+.feedback {
+  margin: 0.75rem 0 0;
+  min-height: 1.25rem;
+  color: var(--color-text-muted);
+}
+
+.result-grid {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+}
+
+.card {
+  border: 1px solid var(--color-border);
+  border-radius: 1rem;
+  padding: 1rem;
+  background: color-mix(in srgb, #fff 92%, var(--color-surface));
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.card h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.card-body {
+  margin: 0;
+  color: inherit;
+}
+
+.card-body li + li {
+  margin-top: 0.5rem;
+}
+
+.accordion-toggle {
+  font-size: 0.85rem;
+  border: 1px solid var(--color-border);
+  background: transparent;
+  color: inherit;
+  border-radius: 999px;
+  padding: 0.25rem 0.75rem;
+  cursor: pointer;
+}
+
+.empty-state,
+.quota-state {
+  text-align: center;
+  color: var(--color-text-muted);
+}
+
+.quota-state button {
+  margin-top: 1rem;
+}
+
+footer {
+  margin-top: auto;
+  padding: 2rem 0 1rem;
+  color: var(--color-text-muted);
+  text-align: center;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (max-width: 640px) {
+  body {
+    padding: 1rem;
+  }
+
+  .form-actions {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  button.primary,
+  button.secondary,
+  button.ghost {
+    width: 100%;
+  }
+}

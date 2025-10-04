@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">Jason Fit Checker maskable placeholder icon</title>
+  <desc id="desc">Rounded square gradient with Jason Fit initials. Replace with branded iconography.</desc>
+  <defs>
+    <linearGradient id="bg512" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#161b2d" />
+      <stop offset="50%" stop-color="#2c5cff" />
+      <stop offset="100%" stop-color="#1fd1ff" />
+    </linearGradient>
+  </defs>
+  <rect x="16" y="16" width="480" height="480" rx="112" fill="url(#bg512)" />
+  <path d="M180 160h64v200h-64z" fill="#ffffff" opacity="0.9" />
+  <path d="M272 160h64c64 0 104 40 104 100s-40 100-104 100h-64z" fill="#ffffff" opacity="0.9" />
+  <path d="M320 216h16c28 0 48 18 48 44s-20 44-48 44h-16z" fill="#1a277c" />
+  <text x="256" y="420" text-anchor="middle" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="72" fill="#d8ebff" letter-spacing="12">
+    DEMO
+  </text>
+</svg>
