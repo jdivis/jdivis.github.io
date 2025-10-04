@@ -1,0 +1,29 @@
+<policies>
+  <inbound>
+    <base />
+    <!-- Validate our short-lived demo JWT -->
+    <validate-jwt require-expiration-time="true" require-scheme="Bearer" header-name="Authorization">
+      <issuer-signing-keys>
+        <key>{{JWT_SECRET_BASE64_OR_JWKS}}</key>
+      </issuer-signing-keys>
+      <audiences>
+        <audience>jdivis-demo</audience>
+      </audiences>
+      <issuers>
+        <issuer>https://api.yourdomain.com</issuer>
+      </issuers>
+    </validate-jwt>
+
+    <!-- Use JWT sub for throttle key; fallback to client IP -->
+    <set-variable name="throttle-key" value="@(context.Principal?.Claims?.GetValueOrDefault(&quot;sub&quot;) ?? context.Request.IpAddress)" />
+
+    <!-- Burst limit -->
+    <rate-limit-by-key calls="3" renewal-period="60" counter-key="@(context.Variables[&quot;throttle-key&quot;])" />
+
+    <!-- Daily quota -->
+    <quota-by-key calls="20" renewal-period="86400" counter-key="@(context.Variables[&quot;throttle-key&quot;])" />
+  </inbound>
+  <backend><base /></backend>
+  <outbound><base /></outbound>
+  <on-error><base /></on-error>
+</policies>
